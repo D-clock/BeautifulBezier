@@ -1,4 +1,4 @@
-package com.bezier.indicator;
+package com.bezier;
 
 import org.junit.Test;
 

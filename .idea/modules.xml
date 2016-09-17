@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BeautifulBezier.iml" filepath="$PROJECT_DIR$/BeautifulBezier.iml" />
-      <module fileurl="file://$PROJECT_DIR$/BezierIndicator/BezierIndicator.iml" filepath="$PROJECT_DIR$/BezierIndicator/BezierIndicator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Bezier/Bezier.iml" filepath="$PROJECT_DIR$/Bezier/Bezier.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

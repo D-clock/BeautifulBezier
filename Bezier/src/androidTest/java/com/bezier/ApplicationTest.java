@@ -1,4 +1,4 @@
-package com.bezier.indicator;
+package com.bezier;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
