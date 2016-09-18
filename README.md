@@ -1,6 +1,6 @@
 # BeautifulBezier
 
-Some practice of Bezier curve , It's Beautiful
+Some practice of bezier curve , it's beautiful
 
 ## About Bezier Curve
 
@@ -16,14 +16,18 @@ Some practice of Bezier curve , It's Beautiful
 
 ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/c927f56552e184c4debebc83a08dc79896052a14)
 
+## Introduction
+
+贝塞尔曲线在 Android 开发中的应用非常广泛，本库将利用贝塞尔曲线来实现出各种各样的效果，相信你一定会非常熟悉这些效果的！
+
 ## Cool Site
 
 - http://myst729.github.io/bezier-curve/
 - http://cubic-bezier.com/
 
-## Introduction
+## Cool Project
 
-贝塞尔曲线在 Android 开发中的应用非常广泛，本库将利用贝塞尔曲线来实现出各种各样的效果，相信你一定会非常熟悉这些效果的！
+- https://github.com/venshine/BezierMaker
 
 ## Licence
 
