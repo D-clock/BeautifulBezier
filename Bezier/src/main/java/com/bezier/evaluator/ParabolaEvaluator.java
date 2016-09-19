@@ -2,7 +2,6 @@ package com.bezier.evaluator;
 
 import android.animation.TypeEvaluator;
 import android.graphics.PointF;
-import android.util.Log;
 
 /**
  * 抛物线效果，利用二阶贝塞尔曲线实现
@@ -39,8 +38,6 @@ public class ParabolaEvaluator implements TypeEvaluator<PointF> {
     public PointF evaluate(float fraction, PointF startValue, PointF endValue) {
         //实现公式：B(t) = (1 - t)^2 * P0 + 2t * (1 - t) * P1 + t^2 * P2, t ∈ [0,1]
         //P0: mSrcPointF ，P1 ：mMidPointF ，P2 ：mDestPoint ， fraction：t
-        Log.i("Test" , "startValue: " + startValue);
-        Log.i("Test" , "endValue: " + endValue);
 
         float diff = 1 - fraction;
         float x = (float) (Math.pow(diff, 2) * mSrcPointF.x + 2 * fraction * diff * mMidPointF.x + Math.pow(fraction, 2) * mDestPoint.x);
