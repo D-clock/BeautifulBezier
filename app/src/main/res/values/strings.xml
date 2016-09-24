@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">BeautifulBezier</string>
-    <string name="goods_price">$ %1$d</string>
+    <string name="product_info">%1$s | %2$s</string>
 </resources>

@@ -15,46 +15,46 @@ import android.widget.ImageView;
 
 import com.bezier.evaluator.ParabolaEvaluator;
 import com.clock.beautifulbezier.R;
-import com.clock.beautifulbezier.adapter.GoodsAdapter;
-import com.clock.beautifulbezier.entity.GoodsInfo;
+import com.clock.beautifulbezier.adapter.ProductAdapter;
+import com.clock.beautifulbezier.entity.ProductInfo;
 
 /**
  * 购物车页面
  *
  * @author Clock
  */
-public class ShoppingActivity extends AppCompatActivity {
+public class ProductsActivity extends AppCompatActivity {
 
-    private final static String TAG = ShoppingActivity.class.getSimpleName();
+    private final static String TAG = ProductsActivity.class.getSimpleName();
 
-    private ImageView mShoppingCart;
-    private RecyclerView mSellList;
+    private ImageView mFavoriteView;
+    private RecyclerView mProductsView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shopping);
+        setContentView(R.layout.activity_products);
 
-        mShoppingCart = (ImageView) findViewById(R.id.iv_shopping_cart);
-        mSellList = (RecyclerView) findViewById(R.id.rv_sell_list);
+        mFavoriteView = (ImageView) findViewById(R.id.iv_favorite);
+        mProductsView = (RecyclerView) findViewById(R.id.rv_product_list);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        mSellList.setLayoutManager(layoutManager);
-        GoodsAdapter goodsAdapter = new GoodsAdapter(this, GoodsInfo.createGoodsList(), new GoodsAdapter.OnAddListener() {
+        mProductsView.setLayoutManager(layoutManager);
+        ProductAdapter productAdapter = new ProductAdapter(this, ProductInfo.fetchProductsInfo(), new ProductAdapter.OnAddListener() {
             @Override
             public void onAdd(View view) {
                 int width = view.getWidth();
                 int height = view.getHeight();
-                final ImageView ballView = new ImageView(ShoppingActivity.this);
+                final ImageView ballView = new ImageView(ProductsActivity.this);
                 ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(width, height);
                 ballView.setLayoutParams(layoutParams);
-                ballView.setImageResource(R.mipmap.red_point);
+                ballView.setImageResource(R.mipmap.icon_like);
                 final ViewGroup decorView = (ViewGroup) getWindow().getDecorView();
                 decorView.addView(ballView);
                 int[] location = new int[2];
                 view.getLocationInWindow(location);
                 PointF srcPoint = new PointF(location[0], location[1]);
-                mShoppingCart.getLocationInWindow(location);
-                PointF destPoint = new PointF(location[0], location[1]);
+                mFavoriteView.getLocationInWindow(location);
+                PointF destPoint = new PointF(location[0] + mFavoriteView.getWidth() / 2, location[1]);
                 PointF midPoint = new PointF(destPoint.x, srcPoint.y);
                 ParabolaEvaluator evaluator = new ParabolaEvaluator(srcPoint, destPoint, midPoint);
                 ValueAnimator animator = ValueAnimator.ofObject(evaluator, srcPoint, destPoint);
@@ -73,12 +73,14 @@ public class ShoppingActivity extends AppCompatActivity {
                     public void onAnimationEnd(Animator animation) {
                         super.onAnimationEnd(animation);
                         decorView.removeView(ballView);
+                        mFavoriteView.setBackgroundResource(R.mipmap.icon_heart_full);
+
                     }
                 });
                 animator.start();
             }
         });
-        mSellList.setAdapter(goodsAdapter);
+        mProductsView.setAdapter(productAdapter);
 
     }
 

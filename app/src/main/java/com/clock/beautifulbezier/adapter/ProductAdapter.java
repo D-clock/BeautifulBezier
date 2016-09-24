@@ -8,8 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.DrawableTypeRequest;
+import com.bumptech.glide.Glide;
 import com.clock.beautifulbezier.R;
-import com.clock.beautifulbezier.entity.GoodsInfo;
+import com.clock.beautifulbezier.entity.ProductInfo;
 
 import java.util.List;
 
@@ -18,41 +20,44 @@ import java.util.List;
  * <p/>
  * Created by Clock on 2016/9/19.
  */
-public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.GoodsHolder> implements View.OnClickListener {
+public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.GoodsHolder> implements View.OnClickListener {
 
-    private List<GoodsInfo> mGoodsInfoList;
+    private List<ProductInfo> mProductsInfo;
     private Context mContext;
     private OnAddListener mOnAddListener;
+    private DrawableTypeRequest<String> mRequest;
 
-    public GoodsAdapter(Context context, List<GoodsInfo> goodsInfoList, OnAddListener onAddListener) {
+    public ProductAdapter(Context context, List<ProductInfo> productsInfo, OnAddListener onAddListener) {
         this.mContext = context;
-        this.mGoodsInfoList = goodsInfoList;
+        this.mProductsInfo = productsInfo;
         this.mOnAddListener = onAddListener;
+        this.mRequest = Glide.with(context).fromString();
     }
 
     @Override
     public GoodsHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        View itemView = inflater.inflate(R.layout.goods_item, parent, false);
+        View itemView = inflater.inflate(R.layout.product_info_item, parent, false);
         return new GoodsHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(GoodsHolder holder, int position) {
-        GoodsInfo goodsInfo = mGoodsInfoList.get(position);
-        holder.mPhotoView.setImageResource(goodsInfo.getIcon());
-        holder.mNameView.setText(goodsInfo.getName());
-        String price = mContext.getString(R.string.goods_price, goodsInfo.getPrice());
-        holder.mPriceView.setText(price);
+        ProductInfo productInfo = mProductsInfo.get(position);
+        String name = productInfo.getName();
+        String introduction = productInfo.getIntroduction();
+        String info = mContext.getString(R.string.product_info, name, introduction);
+        holder.mInfoView.setText(info);
+        mRequest.load(productInfo.getPosterUrl()).into(holder.mPosterView);
         holder.mAddView.setOnClickListener(this);
     }
 
     @Override
     public int getItemCount() {
-        if (mGoodsInfoList == null) {
+        if (mProductsInfo == null) {
             return 0;
         }
-        return mGoodsInfoList.size();
+        return mProductsInfo.size();
     }
 
     @Override
@@ -66,17 +71,15 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.GoodsHolder>
 
     static class GoodsHolder extends RecyclerView.ViewHolder {
 
-        ImageView mPhotoView;
-        TextView mNameView;
-        TextView mPriceView;
+        ImageView mPosterView;
+        TextView mInfoView;
         ImageView mAddView;
 
         public GoodsHolder(View itemView) {
             super(itemView);
 
-            mPhotoView = (ImageView) itemView.findViewById(R.id.iv_goods_photo);
-            mNameView = (TextView) itemView.findViewById(R.id.tv_goods_name);
-            mPriceView = (TextView) itemView.findViewById(R.id.tv_goods_price);
+            mPosterView = (ImageView) itemView.findViewById(R.id.iv_poster);
+            mInfoView = (TextView) itemView.findViewById(R.id.tv_info);
             mAddView = (ImageView) itemView.findViewById(R.id.iv_add);
 
         }

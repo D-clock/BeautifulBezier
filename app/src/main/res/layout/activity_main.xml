@@ -11,8 +11,8 @@
     tools:context="com.clock.beautifulbezier.MainActivity">
 
     <Button
-        android:id="@+id/btn_shopping"
+        android:id="@+id/btn_products"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="走吧，剁手去！（购物车）" />
+        android:text="Products" />
 </LinearLayout>

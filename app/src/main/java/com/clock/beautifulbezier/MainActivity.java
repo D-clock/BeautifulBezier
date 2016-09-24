@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.clock.beautifulbezier.activity.ShoppingActivity;
+import com.clock.beautifulbezier.activity.ProductsActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -14,14 +14,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.btn_shopping).setOnClickListener(this);
+        findViewById(R.id.btn_products).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         int viewId = v.getId();
-        if (viewId == R.id.btn_shopping) {
-            Intent shopping = new Intent(this, ShoppingActivity.class);
+        if (viewId == R.id.btn_products) {
+            Intent shopping = new Intent(this, ProductsActivity.class);
             startActivity(shopping);
         }
     }
